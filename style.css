@@ -1,0 +1,78 @@
+:root {
+  --btn-toggle-color: #1e90ff;
+  --padding-general: 20px;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 200px;
+  border-radius: 5px;
+  background-color: #e5e5e5;
+}
+button {
+  width: fit-content;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.btn-toggle {
+  width: 35px;
+  height: 20px;
+  border-radius: 888px;
+  background-color: #fff;
+  border: 1px solid grey;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: .2s all;
+  position: relative;
+}
+.btn-toggle.active .circle {
+  background-color: var(--btn-toggle-color);
+  transform: translate(-1px, 1px);
+}
+.btn-toggle.active {
+  border-color: var(--btn-toggle-color);
+}
+.btn-toggle .circle {
+  transition: .2s all;
+  width: 16px;
+  height: 16px;
+  background-color: grey;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(calc(-100% + .5px), 1px);
+
+}
+
+.body {
+  padding: 5px 10px;
+}
+
+.header {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #0054db;
+}
+
+.header .title {
+  font-size: 16px;
+  color: white;
+}
+

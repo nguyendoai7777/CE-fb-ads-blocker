@@ -1,0 +1,13 @@
+{
+  "name": "Facebook ads blocker",
+  "description": "A tool allow remove ads when watching live stream",
+  "version": "0.1",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
