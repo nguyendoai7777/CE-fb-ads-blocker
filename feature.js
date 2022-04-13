@@ -12,11 +12,15 @@ function setBlockAdsState({blockState, btnToken, infoToken}) {
 chrome.storage.sync.get('hiddenLeftActionInAppbar', ({ hiddenLeftActionInAppbar }) => {
   if (!hiddenLeftActionInAppbar) {
     chrome.storage.sync.set({ hiddenLeftActionInAppbar: 'yes' })
+  } else {
+    hiddenLeftActionInAppbar();
   }
 });
 chrome.storage.sync.get('fbBlockAdsState', ({ fbBlockAdsState }) => {
   if (!fbBlockAdsState) {
     chrome.storage.sync.set({ fbBlockAdsState: 'yes' })
+  } else {
+    blockFbAds();
   }
 })
 
@@ -52,7 +56,7 @@ function hiddenLeftActionInAppbar() {
   })
 }
 function main() {
-  hiddenLeftActionInAppbar();
+  
   chrome.storage.sync.get('hiddenLeftActionInAppbar', ({ hiddenLeftActionInAppbar }) => {
     if (hiddenLeftActionInAppbar === 'yes') {
       hiddenLeftActionInAppbar();

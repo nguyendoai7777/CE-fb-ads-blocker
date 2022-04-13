@@ -52,7 +52,7 @@ function checkToggleBtnStatus({state, btnToken, text = {token, content}}) {
 
 logo.addEventListener("click", () => {
   isHidden = !isHidden;
-  if(isBlisHiddenock) {
+  if(isHidden) {
     chrome.storage.sync.set({ hiddenLeftActionInAppbar: 'yes' });
     checkToggleBtnStatus({state: true, btnToken: logo, text: {token: hidden, content: 'Đang ẩn.'}});
   } else {
