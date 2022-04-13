@@ -1,13 +1,27 @@
 {
   "name": "Facebook ads blocker",
   "description": "A tool allow remove ads when watching live stream",
-  "version": "0.1",
+  "version": "0.2.0",
   "manifest_version": 3,
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
-  "permissions": ["storage"],
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "scripting",
+    "unlimitedStorage"
+  ],
+  "host_permissions": ["http://*/*", "https://*/*", "<all_urls>"],
   "action": {
     "default_popup": "popup.html"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["feature.js"]
+    }
+  ]
 }

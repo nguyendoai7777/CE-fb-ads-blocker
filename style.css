@@ -1,6 +1,7 @@
 :root {
   --btn-toggle-color: #1e90ff;
   --padding-general: 20px;
+  --danger-text: rgb(255, 21, 0);
 }
 * {
   padding: 0;
