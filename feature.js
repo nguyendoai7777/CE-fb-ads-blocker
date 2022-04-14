@@ -1,4 +1,4 @@
-(function (){
+(async function (){
     const styleSheet = `
       .e-hidden {
         display: none;
@@ -10,29 +10,34 @@
     const cssLink = document.createElement('style');
     cssLink.setAttribute('contribution', 'dxd');
     cssLink.innerHTML = styleSheet;
-    document.head.appendChild(cssLink);
+
+    const url = location.href;
+    const isFacebook = url.includes('facebook.com');
+    if(isFacebook) {
+        document.head.appendChild(cssLink);
+        chrome.storage.sync.get('fbBlockAdsState', ({fbBlockAdsState}) => {
+            console.log(fbBlockAdsState)
+            if (!fbBlockAdsState) {
+                chrome.storage.sync.set({fbBlockAdsState: 'yes'})
+            } else {
+                blockFbAds();
+            }
+        })
+
+        chrome.storage.sync.get('hiddenLeftActionInAppbar', ({hiddenLeftActionInAppbar}) => {
+            console.log(hiddenLeftActionInAppbar)
+            if (!hiddenLeftActionInAppbar) {
+                chrome.storage.sync.set({hiddenLeftActionInAppbar: 'yes'})
+            } else {
+                hiddenActionInAppbar();
+            }
+        });
+
+    }
 })()
 
-window.addEventListener('DOMContentLoaded', () => {
-    chrome.storage.sync.get('fbBlockAdsState', ({fbBlockAdsState}) => {
-        console.log(fbBlockAdsState)
-        if (!fbBlockAdsState) {
-            chrome.storage.sync.set({fbBlockAdsState: 'yes'})
-        } else {
-            blockFbAds();
-        }
-    })
 
-    chrome.storage.sync.get('hiddenLeftActionInAppbar', ({hiddenLeftActionInAppbar}) => {
-        console.log(hiddenLeftActionInAppbar)
-        if (!hiddenLeftActionInAppbar) {
-            chrome.storage.sync.set({hiddenLeftActionInAppbar: 'yes'})
-        } else {
-            hiddenActionInAppbar();
-        }
-    });
 
-})
 
 function blockFbAds() {
     let intervalId = null;
