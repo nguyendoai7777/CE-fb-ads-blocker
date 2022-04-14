@@ -1,29 +1,187 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8" />
-  </head>
-  <body>
-    <div class="header">
-      <div class="title">Facebook Ads Blocker</div>
-    </div>
-    <div class="body">
-      <div class="d-flex ai-center" style="justify-content: space-between; padding: 10px 0;">
-        <div class="user-select-none">Loại bỏ quảng cáo: </div>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <style>
+    :root {
+      --btn-toggle-color: #1e90ff;
+      --padding-general: 20px;
+      --danger-text: rgb(255, 21, 0);
+    }
+
+    .text-md {
+      font-size: 13px;
+    }
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 200px;
+      border-radius: 5px;
+      background-color: #e5e5e5;
+    }
+
+    button {
+      width: fit-content;
+    }
+
+    .d-flex {
+      display: flex;
+    }
+
+    .jc-center {
+      justify-content: center;
+    }
+
+    .jc-between {
+      justify-content: space-between;
+    }
+
+    .ai-center {
+      align-items: center;
+    }
+
+    .user-select-none {
+      user-select: none;
+    }
+
+    .btn-toggle {
+      width: 35px;
+      height: 20px;
+      border-radius: 888px;
+      background-color: #fff;
+      border: 1px solid grey;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: .2s all;
+      position: relative;
+    }
+
+    .btn-toggle.active .circle {
+      background-color: var(--btn-toggle-color);
+      transform: translate(-1px, 1px);
+    }
+
+    .btn-toggle.active {
+      border-color: var(--btn-toggle-color);
+    }
+
+    .toggle-box {}
+
+    ._fh {
+      height: 20px;
+    }
+
+    .btn-toggle .circle {
+      transition: .2s all;
+      width: 16px;
+      height: 16px;
+      background-color: grey;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(calc(-100% + .5px), 1px);
+
+    }
+
+    .body {
+      padding: 5px;
+      border-left: 1px solid var(--btn-toggle-color);
+      border-bottom: 1px solid var(--btn-toggle-color);
+      border-right: 1px solid var(--btn-toggle-color);
+    }
+
+    .header {
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      background-color: #0054db;
+      user-select: none;
+    }
+
+    .header .title {
+      font-size: 16px;
+      color: white;
+    }
+
+    .capsule {
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin-bottom: 8px;
+      box-shadow: 0 0 5px 1px #0081ff40;
+    }
+
+    .reload {
+      position: relative;
+      user-select: none;
+      cursor: pointer;
+      width: fit-content;
+      margin: 10px auto;
+      border-radius: 3px;
+      padding: 5px 10px;
+      box-shadow: 0 0 5px 1px #0081ff40;
+      border: 1px solid var(--btn-toggle-color);
+      overflow: hidden;
+    }
+
+    .ripple {
+      position: absolute;
+      background-color: rgba(0, 191, 255, 0.13);
+      width: 0px;
+      height: 0px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: ripple 1.5s linear;
+    }
+
+    @keyframes ripple {
+      100% {
+        width: 500px;
+        height: 500px;
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="title">Facebook Ads Blocker</div>
+  </div>
+  <div class="body">
+
+    <div class="capsule">
+      <div class="d-flex ai-center jc-between toggle-box _fh">
+        <div class="user-select-none text-md">Loại bỏ quảng cáo: </div>
         <div id="toggle" class="btn-toggle">
-          <div class="circle" ></div>
+          <div class="circle"></div>
         </div>
       </div>
-      <div style="color: rgb(0, 64, 255);" id="location"></div>
-      <div class="d-flex ai-center" style="justify-content: space-between; padding: 10px 0;">
-        <div class="user-select-none">Ẩn logo live: </div>
-        <div id="logo" class="btn-toggle">
-          <div class="circle" ></div>
-        </div>
-      </div>
-        <div style="color: rgb(0, 64, 255);" id="hidden"></div>
+      <div style="color: rgb(0, 64, 255);" id="location" class="status d-flex ai-center text-md _fh">Star ship</div>
     </div>
-    <script src="app.js"></script>
-  </body>
+
+    <div class="capsule">
+      <div class="d-flex ai-center jc-between toggle-box _fh">
+        <div class="user-select-none text-md text-md">Ẩn logo live: </div>
+        <div id="logo" class="btn-toggle">
+          <div class="circle"></div>
+        </div>
+      </div>
+      <div style="color: rgb(0, 64, 255);" id="hidden" class="status d-flex ai-center text-md _fh">Star ship</div>
+    </div>
+    <div class="text-md">Cần tải lại trang để áp dụng</div>
+    <div ripple reload class="reload text-md">Reload</div>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+
 </html>

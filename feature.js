@@ -1,3 +1,17 @@
+const styleSheet = `
+  .e-hidden {
+    display: none;
+  }
+  .e-show {
+    display: block;
+  }
+`;
+const cssLink = document.createElement('style');
+cssLink.setAttribute('contribution', 'dxd');
+cssLink.innerHTML = styleSheet;
+document.head.appendChild(cssLink);
+
+
 function setBlockAdsState({blockState, btnToken, infoToken}) {
   if(blockState) {
     btnToken.classList.add('active');
@@ -9,13 +23,7 @@ function setBlockAdsState({blockState, btnToken, infoToken}) {
     infoToken.style.color = 'var(--danger-text)';
   }
 }
-chrome.storage.sync.get('hiddenLeftActionInAppbar', ({ hiddenLeftActionInAppbar }) => {
-  if (!hiddenLeftActionInAppbar) {
-    chrome.storage.sync.set({ hiddenLeftActionInAppbar: 'yes' })
-  } else {
-    hiddenLeftActionInAppbar();
-  }
-});
+
 chrome.storage.sync.get('fbBlockAdsState', ({ fbBlockAdsState }) => {
   if (!fbBlockAdsState) {
     chrome.storage.sync.set({ fbBlockAdsState: 'yes' })
@@ -23,6 +31,15 @@ chrome.storage.sync.get('fbBlockAdsState', ({ fbBlockAdsState }) => {
     blockFbAds();
   }
 })
+
+chrome.storage.sync.get('hiddenLeftActionInAppbar', ({ hiddenLeftActionInAppbar }) => {
+  if (!hiddenLeftActionInAppbar) {
+    chrome.storage.sync.set({ hiddenLeftActionInAppbar: 'yes' })
+  } else {
+    hiddenActionInAppbar();
+  }
+});
+
 
 function blockFbAds() {
   let intervalId = null;
@@ -39,34 +56,22 @@ function blockFbAds() {
     } else {
       clearInterval(intervalId)
     }
-  })
+  });
 }
 
-function hiddenLeftActionInAppbar() {
-  const actionBar = document.querySelector('.ehxjyohh.kr520xx4');
+function hiddenActionInAppbar() {
+  const actionBar = document.querySelector('.ehxjyohh.kr520xx4.j9ispegn.poy2od1o.dhix69tm.byvelhso.buofh1pr.j83agx80.rq0escxv.bp9cbjyn');
   const liveBanner = document.querySelector('.j83agx80.rgmg9uty');
-  chrome.storage.sync.get('hiddenLeftActionInAppbar', ({ hiddenLeftActionInAppbar }) => {
+  chrome.storage.sync.get('hiddenLeftActionInAppbar', async ({ hiddenLeftActionInAppbar }) => {
     if (hiddenLeftActionInAppbar === 'yes') {
-      actionBar.style.display = 'none';
-      liveBanner.style.display = 'none';
+      console.log('vao day', actionBar);
+      actionBar.classList.add('e-hidden');
+      actionBar.classList.remove('e-show');
+      // actionBar.style.display = 'none';
     } else {
-      actionBar.style.display = 'block';
-      liveBanner.style.display = 'block';
-    }
-  })
-}
-function main() {
-  
-  chrome.storage.sync.get('hiddenLeftActionInAppbar', ({ hiddenLeftActionInAppbar }) => {
-    if (hiddenLeftActionInAppbar === 'yes') {
-      hiddenLeftActionInAppbar();
-    }
-  });
-  chrome.storage.sync.get('fbBlockAdsState', ({ fbBlockAdsState }) => {
-    if (fbBlockAdsState === 'yes') {
-      blockFbAds();
+      console.log('hoac else');
+      actionBar.classList.remove('e-hidden');
+      actionBar.classList.add('e-show');
     }
   });
 }
-
-main();
