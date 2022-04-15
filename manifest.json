@@ -1,7 +1,7 @@
 {
   "name": "Facebook ads blocker",
-  "description": "A tool allow remove ads when watching live stream",
-  "version": "0.2.0",
+  "description": "Bỏ quảng cáo, xoá logo live che màn hình cho ae xem live",
+  "version": "1.0.2",
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js",
@@ -16,7 +16,19 @@
   ],
   "host_permissions": ["http://*/*", "https://*/*", "<all_urls>"],
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "/images/Locker.png",
+      "32": "/images/Locker.png",
+      "48": "/images/Locker.png",
+      "128": "/images/Locker.png"
+    }
+  },
+  "icons": {
+    "16": "/images/Locker.png",
+    "32": "/images/Locker.png",
+    "48": "/images/Locker.png",
+    "128": "/images/Locker.png"
   },
   "content_scripts": [
     {

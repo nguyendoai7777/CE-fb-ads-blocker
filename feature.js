@@ -16,7 +16,6 @@
     if(isFacebook) {
         document.head.appendChild(cssLink);
         chrome.storage.sync.get('fbBlockAdsState', ({fbBlockAdsState}) => {
-            console.log(fbBlockAdsState)
             if (!fbBlockAdsState) {
                 chrome.storage.sync.set({fbBlockAdsState: 'yes'})
             } else {
@@ -25,7 +24,6 @@
         })
 
         chrome.storage.sync.get('hiddenLeftActionInAppbar', ({hiddenLeftActionInAppbar}) => {
-            console.log(hiddenLeftActionInAppbar)
             if (!hiddenLeftActionInAppbar) {
                 chrome.storage.sync.set({hiddenLeftActionInAppbar: 'yes'})
             } else {
@@ -62,8 +60,8 @@ function blockFbAds() {
 
 function hiddenActionInAppbar() {
     const actionBar = document.querySelector('.ehxjyohh.kr520xx4.j9ispegn.poy2od1o.dhix69tm.byvelhso.buofh1pr.j83agx80.rq0escxv.bp9cbjyn');
-    const liveBanner = document.querySelector('.j83agx80.rgmg9uty.pmk7jnqg.rnx8an3s.fcg2cn6m');
-    console.log(actionBar, liveBanner)
+    const liveBanner = document.querySelector('.j83agx80.rgmg9uty.pmk7jnqg.b12hlsfb.fgv6swy9');
+    const liveBanner2 = document.querySelector('.j83agx80.rgmg9uty.pmk7jnqg.rnx8an3s.fcg2cn6m');
     chrome.storage.sync.get('hiddenLeftActionInAppbar', async ({hiddenLeftActionInAppbar}) => {
         if (hiddenLeftActionInAppbar === 'yes') {
             if(actionBar) {
@@ -74,6 +72,10 @@ function hiddenActionInAppbar() {
                 liveBanner.classList.add('e-hidden');
                 liveBanner.classList.remove('e-show');
             }
+            if(liveBanner2) {
+                liveBanner2.classList.add('e-hidden');
+                liveBanner2.classList.remove('e-show');
+            }
         } else {
             if(actionBar) {
                 actionBar.classList.remove('e-hidden');
@@ -82,6 +84,10 @@ function hiddenActionInAppbar() {
             if(liveBanner) {
                 liveBanner.classList.remove('e-hidden');
                 liveBanner.classList.add('e-show');
+            }
+            if(liveBanner2) {
+                liveBanner2.classList.remove('e-hidden');
+                liveBanner2.classList.add('e-show');
             }
         }
     });

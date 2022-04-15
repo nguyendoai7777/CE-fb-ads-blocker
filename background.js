@@ -3,6 +3,6 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   chrome.scripting.executeScript({
     target: { tabId: tab1.id },
     files: ['./feature.js']
-    // func: blockFbAds
+    // func: blologckFbAds
   });
 });
