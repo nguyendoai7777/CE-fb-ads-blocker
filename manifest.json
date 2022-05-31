@@ -32,8 +32,8 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["feature.js"]
+      "matches": ["https://www.facebook.com/*"],
+      "js": ["feature.js", "route-executing.js"]
     }
   ]
 }

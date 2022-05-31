@@ -1,0 +1,50 @@
+input[type=range] {
+    display: none;
+}
+
+.volume {
+    display: flex;
+    align-items: center;
+}
+
+
+.bar-hoverbox {
+    padding: 10px 0;
+    opacity: 0.7;
+    transition: opacity .2s;
+    width: calc(100% - 24px);
+}
+
+.bar-hoverbox:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.bar {
+    background: #d6d6d6;
+    height: 7px;
+    width: 120px;
+    border-radius: 15px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bar-fill {
+    background: deeppink;
+    width: 0;
+    height: 100%;
+    background-clip: border-box;
+    pointer-events: none;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.vol-icon {
+    fill: deeppink;
+    width: 24px;
+    height: 24px;
+}

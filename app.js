@@ -88,7 +88,6 @@ rippleEffect.forEach((btn) => {
         ripple[i].remove();
       }
     }, debounceClick);
-    console.log('up');
   });
   btn.addEventListener('mousedown', () => {
     clearTimeout(debounceClickTimer);
@@ -115,14 +114,14 @@ function hostBlockFbAds() {
 }
 
 function hostHiddenActionInAppbar() {
-  const actionBar = document.querySelector('.ehxjyohh.kr520xx4.j9ispegn.poy2od1o.dhix69tm.byvelhso.buofh1pr.j83agx80.rq0escxv.bp9cbjyn');
+  const logoTop = document.querySelector('.ehxjyohh.kr520xx4.j9ispegn.poy2od1o.dhix69tm.byvelhso.buofh1pr.j83agx80.rq0escxv.bp9cbjyn');
   const liveBanner = document.querySelector('.j83agx80.rgmg9uty.pmk7jnqg.b12hlsfb.fgv6swy9');
   const liveBanner2 = document.querySelector('.j83agx80.rgmg9uty.pmk7jnqg.rnx8an3s.fcg2cn6m');
   chrome.storage.sync.get('hiddenLeftActionInAppbar', async ({hiddenLeftActionInAppbar}) => {
     if (hiddenLeftActionInAppbar === 'yes') {
-      if(actionBar) {
-        actionBar.classList.add('e-hidden');
-        actionBar.classList.remove('e-show');
+      if(logoTop) {
+        logoTop.classList.add('e-hidden');
+        logoTop.classList.remove('e-show');
       }
       if(liveBanner) {
         liveBanner.classList.add('e-hidden');
@@ -133,9 +132,9 @@ function hostHiddenActionInAppbar() {
         liveBanner2.classList.remove('e-show');
       }
     } else {
-      if(actionBar) {
-        actionBar.classList.remove('e-hidden');
-        actionBar.classList.add('e-show');
+      if(logoTop) {
+        logoTop.classList.remove('e-hidden');
+        logoTop.classList.add('e-show');
       }
       if(liveBanner) {
         liveBanner.classList.remove('e-hidden');
@@ -195,4 +194,79 @@ logo.addEventListener("click", () => {
   });
 });
 
+/* document.addEventListener("DOMContentLoaded", () => {
+  const range = document.querySelector(".volume input[type=range]");
 
+  const barHoverBox = document.querySelector(".volume .bar-hoverbox");
+  const fill = document.querySelector(".volume .bar .bar-fill");
+
+  range.addEventListener("change", (e) => {
+    console.log("value", e.target.value);
+  });
+
+  const setValue = (value) => {
+    fill.style.width = value + "%";
+    range.setAttribute("value", value)
+    range.dispatchEvent(new Event("change"))
+  }
+
+
+  setValue(range.value);
+
+  const calculateFill = (e) => {
+    let offsetX = e.offsetX
+    if (e.type === "touchmove") {
+      offsetX = e.touches[0].pageX - e.touches[0].target.offsetLeft
+    }
+    const width = e.target.offsetWidth;
+    setValue((offsetX) / width * 100.0);
+  }
+
+  let barStillDown = false;
+
+  barHoverBox.addEventListener("touchstart", (e) => {
+    barStillDown = true;
+
+    calculateFill(e);
+  }, true);
+
+  barHoverBox.addEventListener("touchmove", (e) => {
+    if (barStillDown) {
+      calculateFill(e);
+    }
+  }, true);
+
+  barHoverBox.addEventListener("mousedown", (e) => {
+    barStillDown = true;
+
+    calculateFill(e);
+  }, true);
+
+  barHoverBox.addEventListener("mousemove", (e) => {
+    if (barStillDown) {
+      calculateFill(e);
+    }
+  });
+
+  barHoverBox.addEventListener("wheel", (e) => {
+    const newValue = +range.value + e.deltaY * 0.5;
+
+    setValue(Math.max(
+        Math.min(
+            newValue,
+            100.0
+        ),
+        0
+    ))
+  });
+
+  document.addEventListener("mouseup", (e) => {
+    barStillDown = false;
+  }, true);
+
+  document.addEventListener("touchend", (e) => {
+    barStillDown = false;
+  }, true);
+})
+
+ */

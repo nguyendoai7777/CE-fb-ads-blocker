@@ -1,4 +1,4 @@
-(async function (){
+(async function () {
     const styleSheet = `
       .e-hidden {
         display: none;
@@ -13,7 +13,7 @@
 
     const url = location.href;
     const isFacebook = url.includes('facebook.com');
-    if(isFacebook) {
+    if (isFacebook) {
         document.head.appendChild(cssLink);
         chrome.storage.sync.get('fbBlockAdsState', ({fbBlockAdsState}) => {
             if (!fbBlockAdsState) {
@@ -30,11 +30,8 @@
                 hiddenActionInAppbar();
             }
         });
-
     }
 })()
-
-
 
 
 function blockFbAds() {
@@ -43,15 +40,20 @@ function blockFbAds() {
         if (fbBlockAdsState === 'yes') {
             const adv = document.querySelector('.gqgwhnc0.g2fypklz.pmk7jnqg.mio9le5o');
             const ads = document.querySelector('.i09qtzwb.rq0escxv.n7fi1qx3.pmk7jnqg.j9ispegn.kr520xx4');
-
             const subscriber = document.querySelector('.j83agx80.rgmg9uty');
             intervalId = setInterval(() => {
                 if (adv) {
                     adv.remove();
-                    subscriber.remove();
+                }
+
+                if (ads) {
                     ads.remove();
                 }
-            }, 3000)
+
+               /* if (subscriber) {
+                    subscriber.remove();
+                }*/
+            }, 3000);
         } else {
             clearInterval(intervalId);
         }
@@ -59,33 +61,33 @@ function blockFbAds() {
 }
 
 function hiddenActionInAppbar() {
-    const actionBar = document.querySelector('.ehxjyohh.kr520xx4.j9ispegn.poy2od1o.dhix69tm.byvelhso.buofh1pr.j83agx80.rq0escxv.bp9cbjyn');
+    const logoTop = document.querySelector('.ehxjyohh.kr520xx4.j9ispegn.poy2od1o.dhix69tm.byvelhso.buofh1pr.j83agx80.rq0escxv.bp9cbjyn');
     const liveBanner = document.querySelector('.j83agx80.rgmg9uty.pmk7jnqg.b12hlsfb.fgv6swy9');
     const liveBanner2 = document.querySelector('.j83agx80.rgmg9uty.pmk7jnqg.rnx8an3s.fcg2cn6m');
     chrome.storage.sync.get('hiddenLeftActionInAppbar', async ({hiddenLeftActionInAppbar}) => {
         if (hiddenLeftActionInAppbar === 'yes') {
-            if(actionBar) {
-                actionBar.classList.add('e-hidden');
-                actionBar.classList.remove('e-show');
+            if (logoTop) {
+                logoTop.classList.add('e-hidden');
+                logoTop.classList.remove('e-show');
             }
-            if(liveBanner) {
+            if (liveBanner) {
                 liveBanner.classList.add('e-hidden');
                 liveBanner.classList.remove('e-show');
             }
-            if(liveBanner2) {
+            if (liveBanner2) {
                 liveBanner2.classList.add('e-hidden');
                 liveBanner2.classList.remove('e-show');
             }
         } else {
-            if(actionBar) {
-                actionBar.classList.remove('e-hidden');
-                actionBar.classList.add('e-show');
+            if (logoTop) {
+                logoTop.classList.remove('e-hidden');
+                logoTop.classList.add('e-show');
             }
-            if(liveBanner) {
+            if (liveBanner) {
                 liveBanner.classList.remove('e-hidden');
                 liveBanner.classList.add('e-show');
             }
-            if(liveBanner2) {
+            if (liveBanner2) {
                 liveBanner2.classList.remove('e-hidden');
                 liveBanner2.classList.add('e-show');
             }
